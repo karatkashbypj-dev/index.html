@@ -789,16 +789,16 @@
       <div class="about-quote-hindi">सोना जागे, तो ज़िन्दगी बदले।</div>
       <div class="founders">
         <div class="founder">
-          <div class="founder-avatar">AB</div>
+          <div class="founder-avatar">RK</div>
           <div class="founder-info">
-            <h6>Aryan Bafna</h6>
+            <h6>Rajesh Kumar</h6>
             <span>Co-Founder & CEO</span>
           </div>
         </div>
         <div class="founder">
-          <div class="founder-avatar">RB</div>
+          <div class="founder-avatar">PS</div>
           <div class="founder-info">
-            <h6>Rajkumar Bafna</h6>
+            <h6>Priya Sharma</h6>
             <span>Co-Founder & COO</span>
           </div>
         </div>
@@ -1003,12 +1003,14 @@
 <a href="https://wa.me/919987599943" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.addEventListener('DOMContentLoaded', function() {
+
   // ── GOLD RATE LOGIC ──
   // MCX 24K rate per 10g in INR — update this number daily
-  const MCX_RATE_10G = 161458; // Today's MCX rate per 10 grams
+  const MCX_RATE_10G = 96500; // Today's MCX rate per 10 grams
   const KARATKASH_SPREAD = 500; // Our spread deducted per 10g
   const MCX_PER_GRAM = MCX_RATE_10G / 10;
-  const BASE_RATE_24K = MCX_PER_GRAM - (KARATKASH_SPREAD / 10); // KaratKash rate per gram
+  const BASE_RATE_24K = MCX_PER_GRAM - (KARATKASH_SPREAD / 10);
 
   const PURITY = { 24: 0.999, 22: 0.916, 18: 0.75, 14: 0.585 };
   const TYPE_FACTOR = { jewelry: 0.95, coin: 0.98, scrap: 0.90 };
@@ -1018,14 +1020,13 @@
     return '₹' + Math.round(n).toLocaleString('en-IN');
   }
 
-  // Populate the ticker bar
   function updateTicker() {
     const r24 = BASE_RATE_24K * PURITY[24];
     const r22 = BASE_RATE_24K * PURITY[22];
     const r18 = BASE_RATE_24K * PURITY[18];
-    document.getElementById('tick24').textContent = formatINR(r24);
-    document.getElementById('tick22').textContent = formatINR(r22);
-    document.getElementById('tick18').textContent = formatINR(r18);
+    if(document.getElementById('tick24')) document.getElementById('tick24').textContent = formatINR(r24);
+    if(document.getElementById('tick22')) document.getElementById('tick22').textContent = formatINR(r22);
+    if(document.getElementById('tick18')) document.getElementById('tick18').textContent = formatINR(r18);
   }
 
   function calculate() {
@@ -1038,9 +1039,7 @@
     const gross = rateForKarat * weight;
     const deduction = gross * (1 - typeFactor);
     const net = gross * typeFactor;
-
     document.getElementById('resultAmount').textContent = formatINR(net);
-
     const bd = document.getElementById('breakdown');
     bd.innerHTML = `
       <div class="breakdown-row"><span>Weight</span><span>${weight}g</span></div>
@@ -1054,6 +1053,8 @@
 
   function buildRateTable() {
     const tbody = document.getElementById('rateTable');
+    if (!tbody) return;
+    tbody.innerHTML = '';
     const karats = [
       { k: 24, hall: 'BIS 999', p: 0.999 },
       { k: 22, hall: 'BIS 916', p: 0.916 },
@@ -1080,7 +1081,6 @@
   calculate();
   updateTicker();
 
-  // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1090,4 +1090,12 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.trust-card, .review-card, .pr
+  document.querySelectorAll('.trust-card, .review-card, .process-step, .value-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+  }); // end DOMContentLoaded
+</script>
