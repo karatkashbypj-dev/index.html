@@ -3,584 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KaratKash — Sona do, Cash lo. Abhi.</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<title>KaratKash — Heavy Metal. Light Speed.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C96A;
-    --gold-pale: #F5E6B8;
-    --gold-dark: #8B6914;
-    --black: #0A0A0A;
-    --charcoal: #1A1A1A;
-    --dark: #111111;
-    --white: #FDFAF4;
-    --cream: #F9F2E3;
-    --text-muted: #6B6455;
-    --green: #2D7A4F;
+    --gold: #C9A84C; --gold-light: #E8C96A; --gold-pale: #F5E6B8;
+    --gold-dark: #8B6914; --black: #0A0A0A; --charcoal: #1A1A1A;
+    --dark: #111111; --white: #FDFAF4; --green: #2D7A4F;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--black); color:var(--white); overflow-x:hidden; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--black);
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem 4rem;
+    background:rgba(10,10,10,0.92); backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(201,168,76,0.15);
   }
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; font-weight: 900;
-    color: var(--gold);
-    letter-spacing: -0.5px;
+  .nav-logo { height:42px; width:auto; }
+  .nav-wordmark {
+    font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900;
+    color:var(--gold); letter-spacing:-0.5px; display:flex; align-items:center; gap:0.5rem;
   }
-  .logo span { color: var(--white); }
-  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  .nav-wordmark span { color:var(--white); }
+  nav ul { list-style:none; display:flex; gap:2.5rem; }
   nav ul a {
-    text-decoration: none; color: rgba(253,250,244,0.7);
-    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: color 0.2s;
+    text-decoration:none; color:rgba(253,250,244,0.7);
+    font-size:0.85rem; font-weight:500; letter-spacing:0.5px; text-transform:uppercase; transition:color 0.2s;
   }
-  nav ul a:hover { color: var(--gold); }
+  nav ul a:hover { color:var(--gold); }
   .nav-cta {
-    background: var(--gold);
-    color: var(--black) !important;
-    padding: 0.55rem 1.4rem;
-    border-radius: 2px;
-    font-weight: 600 !important;
-    transition: background 0.2s !important;
+    background:var(--gold); color:var(--black) !important;
+    padding:0.55rem 1.4rem; border-radius:2px; font-weight:600 !important;
   }
-  .nav-cta:hover { background: var(--gold-light) !important; color: var(--black) !important; }
+  .nav-cta:hover { background:var(--gold-light) !important; }
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    position: relative; overflow: hidden;
-    padding: 5rem 4rem 4rem;
+  /* TICKER */
+  .gold-rate-bar {
+    background:linear-gradient(90deg,rgba(201,168,76,0.18),rgba(201,168,76,0.08),rgba(201,168,76,0.18));
+    border-bottom:1px solid rgba(201,168,76,0.25);
+    padding:0.55rem 1.5rem; margin-top:68px;
+    display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap;
   }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0; opacity: 0.04;
-    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-content { position: relative; z-index: 2; max-width: 700px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(201,168,76,0.12);
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 0.4rem 1rem; border-radius: 2px;
-    font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 2rem;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  .rate-ticker-item { display:flex; align-items:center; gap:0.6rem; }
+  .rate-ticker-label { color:rgba(253,250,244,0.5); text-transform:uppercase; letter-spacing:0.5px; font-size:0.72rem; }
+  .rate-ticker-value { color:var(--gold); font-weight:700; font-size:0.95rem; font-family:'Playfair Display',serif; }
+  .rate-ticker-note { color:rgba(253,250,244,0.35); font-size:0.7rem; }
+  .rate-blink { display:inline-block; width:7px; height:7px; border-radius:50%; background:#4CAF50; animation:pulse 1.5s infinite; margin-right:4px; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  /* ── GOLD RATE TICKER ── */
-  .gold-rate-bar {
-    background: linear-gradient(90deg, rgba(201,168,76,0.18), rgba(201,168,76,0.08), rgba(201,168,76,0.18));
-    border-bottom: 1px solid rgba(201,168,76,0.25);
-    padding: 0.55rem 1.5rem;
-    display: flex; align-items: center; justify-content: center; gap: 2rem;
-    flex-wrap: wrap; position: relative; z-index: 99; margin-top: 72px;
+  /* HERO */
+  #hero {
+    min-height:100vh; display:flex; align-items:center;
+    position:relative; overflow:hidden; padding:5rem 4rem 4rem;
   }
-  .rate-ticker-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 500; }
-  .rate-ticker-label { color: rgba(253,250,244,0.5); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; }
-  .rate-ticker-value { color: var(--gold); font-weight: 700; font-size: 0.95rem; font-family: 'Playfair Display', serif; }
-  .rate-ticker-note { color: rgba(253,250,244,0.35); font-size: 0.7rem; }
-  .rate-blink { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #4CAF50; animation: pulse 1.5s infinite; margin-right: 4px; }
-
+  .hero-bg {
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(201,168,76,0.12) 0%,transparent 70%),
+               radial-gradient(ellipse 40% 40% at 20% 80%,rgba(201,168,76,0.06) 0%,transparent 60%);
+  }
+  .hero-grid {
+    position:absolute; inset:0; opacity:0.04;
+    background-image:linear-gradient(var(--gold) 1px,transparent 1px),linear-gradient(90deg,var(--gold) 1px,transparent 1px);
+    background-size:60px 60px;
+  }
+  .hero-content { position:relative; z-index:2; max-width:700px; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3);
+    padding:0.4rem 1rem; border-radius:2px;
+    font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:2rem; animation:fadeUp 0.8s ease both;
+  }
+  .hero-badge::before { content:'●'; font-size:0.5rem; animation:pulse 2s infinite; }
   h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 900; line-height: 1.05;
-    letter-spacing: -2px;
-    animation: fadeUp 0.8s 0.1s ease both;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(3rem,6vw,5.5rem); font-weight:900; line-height:1.05;
+    letter-spacing:-2px; animation:fadeUp 0.8s 0.1s ease both;
   }
-  h1 em { color: var(--gold); font-style: italic; }
+  h1 em { color:var(--gold); font-style:italic; }
   .hero-sub {
-    font-size: 1.15rem; color: rgba(253,250,244,0.65);
-    margin: 1.5rem 0 2.5rem; line-height: 1.7; font-weight: 300;
-    max-width: 500px;
-    animation: fadeUp 0.8s 0.2s ease both;
+    font-size:1.15rem; color:rgba(253,250,244,0.65);
+    margin:1.5rem 0 2.5rem; line-height:1.7; font-weight:300; max-width:500px;
+    animation:fadeUp 0.8s 0.2s ease both;
   }
-  .hero-sub strong { color: var(--gold-pale); font-weight: 600; }
-  .hero-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
+  .hero-sub strong { color:var(--gold-pale); font-weight:600; }
+  .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp 0.8s 0.3s ease both; }
   .btn-primary {
-    background: var(--gold); color: var(--black);
-    padding: 0.9rem 2rem; border: none; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
-    cursor: pointer; letter-spacing: 0.3px;
-    transition: all 0.2s; text-decoration: none;
-    display: inline-block;
+    background:var(--gold); color:var(--black);
+    padding:0.9rem 2rem; border:none; border-radius:2px;
+    font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block;
   }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+  .btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,0.3); }
   .btn-outline {
-    background: transparent; color: var(--white);
-    padding: 0.9rem 2rem; border: 1px solid rgba(253,250,244,0.25); border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
-    cursor: pointer; transition: all 0.2s; text-decoration: none;
-    display: inline-block;
+    background:transparent; color:var(--white);
+    padding:0.9rem 2rem; border:1px solid rgba(253,250,244,0.25); border-radius:2px;
+    font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:500;
+    cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block;
   }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-  .stat-item { }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 700; color: var(--gold);
-    line-height: 1;
-  }
-  .stat-label { font-size: 0.8rem; color: rgba(253,250,244,0.5); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
-
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+  .hero-stats { display:flex; gap:3rem; margin-top:4rem; animation:fadeUp 0.8s 0.4s ease both; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); line-height:1; }
+  .stat-label { font-size:0.8rem; color:rgba(253,250,244,0.5); margin-top:0.3rem; text-transform:uppercase; letter-spacing:0.5px; }
   .hero-visual {
-    position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
-    width: 380px; height: 380px;
-    animation: fadeUp 0.8s 0.3s ease both;
+    position:absolute; right:4rem; top:50%; transform:translateY(-50%);
+    width:380px; height:380px; animation:fadeUp 0.8s 0.3s ease both;
   }
   .gold-circle {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
-    opacity: 0.15;
-    animation: spin 20s linear infinite;
+    width:100%; height:100%; border-radius:50%;
+    background:conic-gradient(from 0deg,var(--gold-dark),var(--gold),var(--gold-light),var(--gold),var(--gold-dark));
+    opacity:0.15; animation:spin 20s linear infinite;
   }
   @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-  .gold-ring {
-    position: absolute; inset: 20px;
-    border-radius: 50%;
-    border: 2px solid rgba(201,168,76,0.3);
-    animation: spin 15s linear infinite reverse;
-  }
-  .gold-ring2 {
-    position: absolute; inset: 60px;
-    border-radius: 50%;
-    border: 1px solid rgba(201,168,76,0.15);
-    animation: spin 10s linear infinite;
-  }
-  .gold-center {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem; color: var(--gold); opacity: 0.6;
-  }
+  .gold-ring { position:absolute; inset:20px; border-radius:50%; border:2px solid rgba(201,168,76,0.3); animation:spin 15s linear infinite reverse; }
+  .gold-ring2 { position:absolute; inset:60px; border-radius:50%; border:1px solid rgba(201,168,76,0.15); animation:spin 10s linear infinite; }
+  .gold-center { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:5rem; color:var(--gold); opacity:0.6; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── TRUST BAR ── */
+  /* TRUST BAR */
   .trust-bar {
-    background: var(--charcoal);
-    border-top: 1px solid rgba(201,168,76,0.15);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    padding: 1.2rem 4rem;
-    display: flex; align-items: center; justify-content: center; gap: 4rem;
-    flex-wrap: wrap;
+    background:var(--charcoal); border-top:1px solid rgba(201,168,76,0.15); border-bottom:1px solid rgba(201,168,76,0.15);
+    padding:1.2rem 4rem; display:flex; align-items:center; justify-content:center; gap:4rem; flex-wrap:wrap;
   }
-  .trust-item {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.82rem; color: rgba(253,250,244,0.6);
-    letter-spacing: 0.3px;
-  }
-  .trust-item .icon { color: var(--gold); font-size: 1rem; }
+  .trust-item { display:flex; align-items:center; gap:0.6rem; font-size:0.82rem; color:rgba(253,250,244,0.6); }
+  .trust-item .icon { color:var(--gold); }
 
-  /* ── SECTIONS ── */
-  section { padding: 6rem 4rem; }
-  .section-label {
-    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1rem; font-weight: 600;
-  }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; line-height: 1.15;
-    letter-spacing: -1px;
-  }
-  h2 em { color: var(--gold); font-style: italic; }
+  /* SECTIONS */
+  section { padding:6rem 4rem; }
+  .section-label { font-size:0.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; font-weight:600; }
+  h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); font-weight:700; line-height:1.15; letter-spacing:-1px; }
+  h2 em { color:var(--gold); font-style:italic; }
 
-  /* ── CALCULATOR ── */
-  #calculator { background: var(--charcoal); }
-  .calc-wrap {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: start; margin-top: 3rem;
-  }
-  .calc-box {
-    background: var(--dark);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 4px; padding: 2.5rem;
-  }
-  .calc-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; margin-bottom: 2rem; color: var(--gold-pale);
-  }
-  .form-group { margin-bottom: 1.5rem; }
-  label {
-    display: block; font-size: 0.8rem;
-    letter-spacing: 0.5px; text-transform: uppercase;
-    color: rgba(253,250,244,0.5); margin-bottom: 0.5rem; font-weight: 500;
-  }
+  /* CALCULATOR */
+  #calculator { background:var(--charcoal); }
+  .calc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-top:3rem; }
+  .calc-box { background:var(--dark); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:2.5rem; }
+  .calc-box h3 { font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:2rem; color:var(--gold-pale); }
+  .form-group { margin-bottom:1.5rem; }
+  label { display:block; font-size:0.8rem; letter-spacing:0.5px; text-transform:uppercase; color:rgba(253,250,244,0.5); margin-bottom:0.5rem; font-weight:500; }
   select, input[type="number"] {
-    width: 100%; padding: 0.75rem 1rem;
-    background: rgba(201,168,76,0.06);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 2px; color: var(--white);
-    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
-    transition: border-color 0.2s; appearance: none;
+    width:100%; padding:0.75rem 1rem; background:rgba(201,168,76,0.06);
+    border:1px solid rgba(201,168,76,0.2); border-radius:2px; color:var(--white);
+    font-family:'DM Sans',sans-serif; font-size:0.95rem; transition:border-color 0.2s; appearance:none;
   }
-  select:focus, input:focus {
-    outline: none; border-color: var(--gold);
-    background: rgba(201,168,76,0.1);
-  }
-  select option { background: var(--charcoal); }
+  select:focus, input:focus { outline:none; border-color:var(--gold); background:rgba(201,168,76,0.1); }
+  select option { background:var(--charcoal); }
+  .calc-result { background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05)); border:1px solid rgba(201,168,76,0.4); border-radius:4px; padding:2rem; text-align:center; margin-top:1.5rem; }
+  .result-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:rgba(253,250,244,0.5); margin-bottom:0.5rem; }
+  .result-amount { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1; }
+  .result-note { font-size:0.75rem; color:rgba(253,250,244,0.4); margin-top:0.5rem; }
+  .result-breakdown { margin-top:1.5rem; text-align:left; }
+  .breakdown-row { display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid rgba(201,168,76,0.1); font-size:0.85rem; color:rgba(253,250,244,0.6); }
+  .breakdown-row.total { color:var(--gold); font-weight:600; border-bottom:none; margin-top:0.3rem; }
+  .calc-info h3 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:1rem; }
+  .calc-info p { color:rgba(253,250,244,0.6); line-height:1.7; margin-bottom:1.5rem; }
+  .purity-table { width:100%; border-collapse:collapse; margin-top:1rem; }
+  .purity-table th { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--gold); padding:0.5rem 0.75rem; text-align:left; border-bottom:1px solid rgba(201,168,76,0.2); }
+  .purity-table td { padding:0.6rem 0.75rem; font-size:0.85rem; color:rgba(253,250,244,0.65); border-bottom:1px solid rgba(255,255,255,0.04); }
 
-  .calc-result {
-    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-    border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 4px; padding: 2rem;
-    text-align: center; margin-top: 1.5rem;
-  }
-  .result-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(253,250,244,0.5); margin-bottom: 0.5rem; }
-  .result-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem; font-weight: 700; color: var(--gold);
-    line-height: 1;
-  }
-  .result-note { font-size: 0.75rem; color: rgba(253,250,244,0.4); margin-top: 0.5rem; }
-  .result-breakdown { margin-top: 1.5rem; text-align: left; }
-  .breakdown-row {
-    display: flex; justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    font-size: 0.85rem; color: rgba(253,250,244,0.6);
-  }
-  .breakdown-row.total { color: var(--gold); font-weight: 600; border-bottom: none; margin-top: 0.3rem; }
+  /* PROCESS */
+  #process { background:var(--black); }
+  .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:3rem; position:relative; }
+  .process-grid::before { content:''; position:absolute; top:2.5rem; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.3; }
+  .process-step { padding:2rem 1.5rem; text-align:center; }
+  .step-num { width:48px; height:48px; border:1px solid rgba(201,168,76,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold); background:var(--black); position:relative; z-index:1; }
+  .step-icon { font-size:1.4rem; margin-bottom:1rem; }
+  .process-step h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.75rem; color:var(--gold-pale); }
+  .process-step p { font-size:0.85rem; color:rgba(253,250,244,0.5); line-height:1.6; }
+  .process-step .hindi { font-size:0.8rem; color:var(--gold); margin-top:0.5rem; font-style:italic; }
 
-  .calc-info { }
-  .calc-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem; margin-bottom: 1rem;
-  }
-  .calc-info p { color: rgba(253,250,244,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
-  .purity-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-  .purity-table th {
-    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
-    color: var(--gold); padding: 0.5rem 0.75rem; text-align: left;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-  }
-  .purity-table td {
-    padding: 0.6rem 0.75rem; font-size: 0.85rem;
-    color: rgba(253,250,244,0.65);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .purity-table tr:hover td { background: rgba(201,168,76,0.05); }
+  /* ABOUT */
+  #about { background:var(--charcoal); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-top:3rem; }
+  .about-text p { color:rgba(253,250,244,0.65); line-height:1.8; margin-bottom:1.2rem; font-size:1rem; }
+  .about-text p strong { color:var(--gold-pale); }
+  .about-values { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; }
+  .value-card { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.15); border-radius:3px; padding:1.2rem; }
+  .value-card .v-icon { font-size:1.2rem; margin-bottom:0.5rem; }
+  .value-card h5 { font-size:0.85rem; font-weight:600; color:var(--gold-pale); margin-bottom:0.3rem; }
+  .value-card p { font-size:0.78rem; color:rgba(253,250,244,0.5); line-height:1.5; }
+  .about-visual { position:relative; background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.02)); border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:3rem; text-align:center; }
+  .about-big-text { font-family:'Playfair Display',serif; font-size:4rem; font-weight:900; color:var(--gold); opacity:0.15; line-height:1; margin-bottom:1rem; }
+  .about-quote { font-family:'Playfair Display',serif; font-size:1.4rem; font-style:italic; color:var(--gold-pale); line-height:1.5; }
+  .about-quote-hindi { font-size:0.9rem; color:rgba(253,250,244,0.4); margin-top:0.75rem; }
+  .founders { margin-top:2rem; }
+  .founder { display:flex; align-items:center; gap:1rem; padding:1rem 0; border-top:1px solid rgba(201,168,76,0.1); }
+  .founder-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--gold-dark),var(--gold)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; color:var(--black); font-size:0.9rem; flex-shrink:0; }
+  .founder-info h6 { font-size:0.85rem; font-weight:600; }
+  .founder-info span { font-size:0.75rem; color:rgba(253,250,244,0.4); }
 
-  /* ── PROCESS ── */
-  #process { background: var(--black); }
-  .process-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-    margin-top: 3rem; position: relative;
-  }
-  .process-grid::before {
-    content: '';
-    position: absolute; top: 2.5rem; left: 10%; right: 10%;
-    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.3;
-  }
-  .process-step {
-    padding: 2rem 1.5rem; text-align: center;
-    position: relative;
-  }
-  .step-num {
-    width: 48px; height: 48px;
-    border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--gold);
-    background: var(--black);
-    position: relative; z-index: 1;
-  }
-  .step-icon { font-size: 1.4rem; margin-bottom: 1rem; }
-  .process-step h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--gold-pale);
-  }
-  .process-step p { font-size: 0.85rem; color: rgba(253,250,244,0.5); line-height: 1.6; }
-  .process-step .hindi { font-size: 0.8rem; color: var(--gold); margin-top: 0.5rem; font-style: italic; }
+  /* TRUST */
+  #trust { background:var(--black); }
+  .trust-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+  .trust-card { background:var(--charcoal); border:1px solid rgba(201,168,76,0.12); border-radius:4px; padding:2rem; transition:all 0.3s; position:relative; overflow:hidden; }
+  .trust-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0; transition:opacity 0.3s; }
+  .trust-card:hover { border-color:rgba(201,168,76,0.3); transform:translateY(-4px); }
+  .trust-card:hover::before { opacity:1; }
+  .trust-card .t-icon { font-size:2rem; margin-bottom:1rem; }
+  .trust-card h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.75rem; color:var(--gold-pale); }
+  .trust-card p { font-size:0.85rem; color:rgba(253,250,244,0.55); line-height:1.6; }
+  .trust-badge-row { display:flex; gap:1rem; flex-wrap:wrap; margin-top:3rem; justify-content:center; }
+  .badge { display:flex; align-items:center; gap:0.5rem; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); padding:0.6rem 1.2rem; border-radius:2px; font-size:0.8rem; color:rgba(253,250,244,0.7); }
+  .badge .b-icon { color:var(--gold); }
 
-  /* ── ABOUT ── */
-  #about { background: var(--charcoal); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-    align-items: center; margin-top: 3rem;
-  }
-  .about-text p {
-    color: rgba(253,250,244,0.65); line-height: 1.8;
-    margin-bottom: 1.2rem; font-size: 1rem;
-  }
-  .about-text p strong { color: var(--gold-pale); }
-  .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-  .value-card {
-    background: rgba(201,168,76,0.06);
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 3px; padding: 1.2rem;
-  }
-  .value-card .v-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
-  .value-card h5 { font-size: 0.85rem; font-weight: 600; color: var(--gold-pale); margin-bottom: 0.3rem; }
-  .value-card p { font-size: 0.78rem; color: rgba(253,250,244,0.5); line-height: 1.5; }
-  .about-visual {
-    position: relative;
-    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02));
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 4px; padding: 3rem;
-    text-align: center;
-  }
-  .about-big-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem; font-weight: 900; color: var(--gold);
-    opacity: 0.15; line-height: 1; margin-bottom: 1rem;
-  }
-  .about-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; font-style: italic;
-    color: var(--gold-pale); line-height: 1.5;
-  }
-  .about-quote-hindi {
-    font-size: 0.9rem; color: rgba(253,250,244,0.4);
-    margin-top: 0.75rem; font-style: normal;
-  }
-  .founders { margin-top: 2rem; }
-  .founder {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1rem 0; border-top: 1px solid rgba(201,168,76,0.1);
-  }
-  .founder-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; font-weight: 700; color: var(--black);
-    font-size: 0.9rem; flex-shrink: 0;
-  }
-  .founder-info h6 { font-size: 0.85rem; font-weight: 600; }
-  .founder-info span { font-size: 0.75rem; color: rgba(253,250,244,0.4); }
+  /* REVIEWS */
+  #reviews { background:var(--charcoal); }
+  .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+  .review-card { background:var(--dark); border:1px solid rgba(201,168,76,0.1); border-radius:4px; padding:1.8rem; transition:transform 0.3s; }
+  .review-card:hover { transform:translateY(-3px); }
+  .stars { color:var(--gold); font-size:0.85rem; margin-bottom:1rem; letter-spacing:2px; }
+  .review-text { font-size:0.9rem; color:rgba(253,250,244,0.7); line-height:1.7; margin-bottom:1.5rem; font-style:italic; }
+  .reviewer { display:flex; align-items:center; gap:0.75rem; }
+  .reviewer-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--gold-dark),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; color:var(--black); flex-shrink:0; }
+  .reviewer-name { font-size:0.85rem; font-weight:600; }
+  .reviewer-detail { font-size:0.75rem; color:rgba(253,250,244,0.4); }
+  .review-summary { display:flex; gap:3rem; justify-content:center; margin-top:3rem; padding:2rem; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.15); border-radius:4px; }
+  .summary-item { text-align:center; }
+  .summary-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold); font-weight:700; }
+  .summary-label { font-size:0.75rem; color:rgba(253,250,244,0.4); margin-top:0.2rem; text-transform:uppercase; letter-spacing:0.5px; }
 
-  /* ── TRUST ── */
-  #trust { background: var(--black); }
-  .trust-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .trust-card {
-    background: var(--charcoal);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 4px; padding: 2rem;
-    transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .trust-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .trust-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
-  .trust-card:hover::before { opacity: 1; }
-  .trust-card .t-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .trust-card h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--gold-pale); }
-  .trust-card p { font-size: 0.85rem; color: rgba(253,250,244,0.55); line-height: 1.6; }
-  .trust-badge-row {
-    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem;
-    justify-content: center;
-  }
-  .badge {
-    display: flex; align-items: center; gap: 0.5rem;
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 0.6rem 1.2rem; border-radius: 2px;
-    font-size: 0.8rem; color: rgba(253,250,244,0.7);
-  }
-  .badge .b-icon { color: var(--gold); }
+  /* CTA */
+  #cta { background:var(--black); text-align:center; padding:6rem 4rem; position:relative; overflow:hidden; }
+  #cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.1) 0%,transparent 70%); }
+  #cta h2 { position:relative; z-index:1; font-size:clamp(2rem,5vw,3.5rem); }
+  #cta p { position:relative; z-index:1; color:rgba(253,250,244,0.55); margin:1rem 0 2.5rem; font-size:1.05rem; }
+  #cta .cta-actions { position:relative; z-index:1; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
-  /* ── REVIEWS ── */
-  #reviews { background: var(--charcoal); }
-  .reviews-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .review-card {
-    background: var(--dark);
-    border: 1px solid rgba(201,168,76,0.1);
-    border-radius: 4px; padding: 1.8rem;
-    transition: transform 0.3s;
-  }
-  .review-card:hover { transform: translateY(-3px); }
-  .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
-  .review-text {
-    font-size: 0.9rem; color: rgba(253,250,244,0.7);
-    line-height: 1.7; margin-bottom: 1.5rem;
-    font-style: italic;
-  }
-  .reviewer {
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .reviewer-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700; color: var(--black);
-    flex-shrink: 0;
-  }
-  .reviewer-name { font-size: 0.85rem; font-weight: 600; }
-  .reviewer-detail { font-size: 0.75rem; color: rgba(253,250,244,0.4); }
-  .review-summary {
-    display: flex; gap: 3rem; justify-content: center;
-    margin-top: 3rem; padding: 2rem;
-    background: rgba(201,168,76,0.06);
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 4px;
-  }
-  .summary-item { text-align: center; }
-  .summary-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; color: var(--gold); font-weight: 700;
-  }
-  .summary-label { font-size: 0.75rem; color: rgba(253,250,244,0.4); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  /* FOOTER */
+  footer { background:var(--charcoal); border-top:1px solid rgba(201,168,76,0.15); padding:3rem 4rem 2rem; }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:3rem; }
+  .footer-brand p { font-size:0.83rem; color:rgba(253,250,244,0.4); margin-top:0.75rem; line-height:1.6; }
+  footer h6 { font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:1rem; }
+  footer ul { list-style:none; }
+  footer ul li { margin-bottom:0.5rem; }
+  footer ul a { text-decoration:none; color:rgba(253,250,244,0.45); font-size:0.83rem; transition:color 0.2s; }
+  footer ul a:hover { color:var(--gold); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.06); font-size:0.75rem; color:rgba(253,250,244,0.3); }
+  .rbi-note { font-size:0.7rem; color:rgba(253,250,244,0.25); }
+  .footer-logo { height:36px; width:auto; margin-bottom:0.75rem; }
 
-  /* ── CTA ── */
-  #cta {
-    background: var(--black);
-    text-align: center; padding: 6rem 4rem;
-    position: relative; overflow: hidden;
-  }
-  #cta::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 70%);
-  }
-  #cta h2 { position: relative; z-index: 1; font-size: clamp(2rem, 5vw, 3.5rem); }
-  #cta p { position: relative; z-index: 1; color: rgba(253,250,244,0.55); margin: 1rem 0 2.5rem; font-size: 1.05rem; }
-  #cta .cta-actions { position: relative; z-index: 1; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  /* WHATSAPP */
+  .whatsapp-float { position:fixed; bottom:2rem; right:2rem; z-index:99; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 20px rgba(37,211,102,0.4); text-decoration:none; transition:transform 0.2s; }
+  .whatsapp-float:hover { transform:scale(1.1); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--charcoal);
-    border-top: 1px solid rgba(201,168,76,0.15);
-    padding: 3rem 4rem 2rem;
+  /* MOBILE */
+  @media (max-width:900px) {
+    nav { padding:0.8rem 1.2rem; }
+    nav ul { display:none; }
+    .nav-logo { height:34px; }
+    section { padding:3.5rem 1.2rem; }
+    #hero { padding:2rem 1.2rem 3rem; min-height:auto; }
+    .hero-visual { display:none; }
+    h1 { font-size:clamp(2.4rem,9vw,3.5rem); letter-spacing:-1px; }
+    .hero-sub { font-size:1rem; }
+    .hero-actions { flex-direction:column; }
+    .btn-primary, .btn-outline { text-align:center; width:100%; padding:1rem; font-size:1rem; }
+    .hero-stats { gap:1.5rem; flex-wrap:wrap; margin-top:2.5rem; }
+    .stat-num { font-size:1.7rem; }
+    h2 { font-size:clamp(1.7rem,6vw,2.4rem); }
+    .calc-wrap, .about-grid, .footer-grid { grid-template-columns:1fr; gap:2rem; }
+    .about-values { grid-template-columns:1fr 1fr; }
+    .trust-grid, .reviews-grid { grid-template-columns:1fr; gap:1rem; }
+    .process-grid { grid-template-columns:1fr 1fr; }
+    .process-grid::before { display:none; }
+    .trust-bar { padding:0.8rem 1rem; gap:0.8rem; overflow-x:auto; flex-wrap:nowrap; justify-content:flex-start; }
+    .trust-item { font-size:0.75rem; white-space:nowrap; }
+    .gold-rate-bar { gap:1rem; padding:0.5rem 1rem; margin-top:58px; overflow-x:auto; flex-wrap:nowrap; justify-content:flex-start; }
+    .rate-ticker-item { white-space:nowrap; }
+    .review-summary { flex-wrap:wrap; gap:1.5rem; }
+    #cta { padding:4rem 1.2rem; }
+    .cta-actions { flex-direction:column; align-items:center; }
+    footer { padding:2rem 1.2rem 1.5rem; }
+    .footer-bottom { flex-direction:column; gap:0.5rem; text-align:center; }
+    .result-amount { font-size:2rem; }
   }
-  .footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-    margin-bottom: 3rem;
-  }
-  .footer-brand .logo { font-size: 1.4rem; }
-  .footer-brand p { font-size: 0.83rem; color: rgba(253,250,244,0.4); margin-top: 0.75rem; line-height: 1.6; }
-  footer h6 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 1rem; }
-  footer ul { list-style: none; }
-  footer ul li { margin-bottom: 0.5rem; }
-  footer ul a { text-decoration: none; color: rgba(253,250,244,0.45); font-size: 0.83rem; transition: color 0.2s; }
-  footer ul a:hover { color: var(--gold); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06);
-    font-size: 0.75rem; color: rgba(253,250,244,0.3);
-  }
-  .rbi-note { font-size: 0.7rem; color: rgba(253,250,244,0.25); }
-
-  /* ── WHATSAPP FLOAT ── */
-  .whatsapp-float {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
-    background: #25D366; color: white;
-    width: 56px; height: 56px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    text-decoration: none; transition: transform 0.2s;
-  }
-  .whatsapp-float:hover { transform: scale(1.1); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.2rem; }
-    nav ul { display: none; }
-    .logo { font-size: 1.3rem; }
-    section { padding: 3.5rem 1.2rem; }
-    #hero { padding: 2rem 1.2rem 3rem; min-height: auto; padding-top: 2rem; }
-    .hero-visual { display: none; }
-    h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); letter-spacing: -1px; }
-    .hero-sub { font-size: 1rem; }
-    .hero-badge { font-size: 0.68rem; }
-    .hero-actions { flex-direction: column; }
-    .btn-primary, .btn-outline { text-align: center; width: 100%; padding: 1rem; font-size: 1rem; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
-    .stat-num { font-size: 1.7rem; }
-    .stat-label { font-size: 0.72rem; }
-    h2 { font-size: clamp(1.7rem, 6vw, 2.4rem); letter-spacing: -0.5px; }
-    .calc-wrap { grid-template-columns: 1fr; gap: 2rem; }
-    .calc-box { padding: 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-values { grid-template-columns: 1fr 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .trust-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .process-grid { grid-template-columns: 1fr 1fr; }
-    .process-grid::before { display: none; }
-    .trust-bar { padding: 0.8rem 1rem; gap: 0.8rem; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
-    .trust-item { font-size: 0.75rem; white-space: nowrap; }
-    .gold-rate-bar { gap: 1rem; padding: 0.5rem 1rem; margin-top: 62px; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
-    .rate-ticker-item { white-space: nowrap; }
-    .review-summary { flex-wrap: wrap; gap: 1.5rem; }
-    .trust-badge-row { gap: 0.5rem; }
-    .badge { font-size: 0.72rem; padding: 0.4rem 0.8rem; }
-    #cta { padding: 4rem 1.2rem; }
-    .cta-actions { flex-direction: column; align-items: center; }
-    footer { padding: 2rem 1.2rem 1.5rem; }
-    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .result-amount { font-size: 2rem; }
-    .purity-table th, .purity-table td { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
-  }
-
-  @media (max-width: 480px) {
-    h1 { font-size: 2.2rem; }
-    .process-grid { grid-template-columns: 1fr; }
-    .about-values { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.2rem; }
-    .stat-num { font-size: 1.5rem; }
+  @media (max-width:480px) {
+    h1 { font-size:2.2rem; }
+    .process-grid { grid-template-columns:1fr; }
+    .about-values { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <img src="logo.png" alt="KaratKash" style="height:100px;">
+  <div class="nav-wordmark">
+    <img src="logo.png" alt="KaratKash" class="nav-logo">
+    Karat<span>Kash</span>
+  </div>
   <ul>
     <li><a href="#calculator">Estimate</a></li>
     <li><a href="#process">Process</a></li>
@@ -591,15 +306,14 @@
   </ul>
 </nav>
 
-<!-- GOLD RATE TICKER BAR -->
-<div class="gold-rate-bar" id="rateBar">
+<div class="gold-rate-bar">
   <div class="rate-ticker-item">
     <span class="rate-blink"></span>
     <span class="rate-ticker-label">Today's KaratKash Rate</span>
   </div>
   <div class="rate-ticker-item">
     <span class="rate-ticker-label">24K (999)</span>
-    <span class="rate-ticker-value" id="tick24">Loading...</span>
+    <span class="rate-ticker-value" id="tick24">—</span>
     <span class="rate-ticker-note">/gram</span>
   </div>
   <div class="rate-ticker-item">
@@ -617,33 +331,21 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-badge">India's Most Trusted Gold Buyer</div>
     <h1>Heavy metal.<br><em>Light speed.</em></h1>
-    <p class="hero-sub">
-      Sell your gold at <strong>India's best rates</strong> — weighed, tested, and paid in under 20 minutes. Walk in with gold. Walk out with cash.
-    </p>
+    <p class="hero-sub">Sell your gold at <strong>India's best rates</strong> — weighed, tested, and paid in under 20 minutes. Walk in with gold. Walk out with cash.</p>
     <div class="hero-actions">
       <a href="#calculator" class="btn-primary">Calculate Your Gold Value →</a>
       <a href="#process" class="btn-outline">How It Works</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">₹500Cr+</div>
-        <div class="stat-label">Gold Purchased</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">50,000+</div>
-        <div class="stat-label">Happy Customers</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">4.8★</div>
-        <div class="stat-label">Average Rating</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">₹500Cr+</div><div class="stat-label">Gold Purchased</div></div>
+      <div class="stat-item"><div class="stat-num">50,000+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-label">Average Rating</div></div>
     </div>
   </div>
   <div class="hero-visual">
@@ -654,7 +356,6 @@
   </div>
 </section>
 
-<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><span class="icon">✓</span> RBI Compliant</div>
   <div class="trust-item"><span class="icon">✓</span> BIS Certified Weighing</div>
@@ -664,7 +365,6 @@
   <div class="trust-item"><span class="icon">✓</span> Incorporated in India</div>
 </div>
 
-<!-- CALCULATOR -->
 <section id="calculator">
   <div class="section-label">Gold Value Estimator</div>
   <h2>Apna sona kitne ka hai? <em>Abhi jaano.</em></h2>
@@ -692,30 +392,27 @@
           <option value="scrap">Scrap / Broken Pieces</option>
         </select>
       </div>
-      <div class="calc-result" id="calcResult">
+      <div class="calc-result">
         <div class="result-label">Estimated Value</div>
         <div class="result-amount" id="resultAmount">₹0</div>
         <div class="result-note">*Based on today's market rate. Final value confirmed on physical inspection.</div>
         <div class="result-breakdown" id="breakdown"></div>
       </div>
-      <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="scrollToContact()">Get Exact Quote →</button>
+      <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get Exact Quote →</button>
     </div>
     <div class="calc-info">
       <h3>How we <em>price</em> your gold</h3>
-      <p>We use live MCX/IBJA gold rates updated every 15 minutes. Our spread is the tightest in the industry — you always get <strong>maximum value</strong> for your gold.</p>
+      <p>We use live MCX/IBJA gold rates updated daily. Our spread is the tightest in the industry — you always get <strong>maximum value</strong> for your gold.</p>
       <p>No deductions for making charges. No hidden fees. What you see is what you get — transferred directly to your bank account.</p>
       <table class="purity-table">
-        <thead>
-          <tr><th>Hallmark</th><th>Karat</th><th>Purity %</th><th>Rate (per gram)*</th></tr>
-        </thead>
+        <thead><tr><th>Hallmark</th><th>Karat</th><th>Purity %</th><th>Rate (per gram)</th></tr></thead>
         <tbody id="rateTable"></tbody>
       </table>
-      <p style="font-size:0.72rem;color:rgba(253,250,244,0.3);margin-top:0.75rem;">*Indicative rates. Updated daily based on MCX gold price.</p>
+      <p style="font-size:0.72rem;color:rgba(253,250,244,0.3);margin-top:0.75rem;">*Based on MCX rate minus ₹500 spread. Updated daily.</p>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
 <section id="process">
   <div class="section-label">Simple. Fast. Transparent.</div>
   <h2>Chaar steps mein,<br><em>cash haath mein.</em></h2>
@@ -751,7 +448,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">Our Story</div>
   <h2>Built for <em>Bharat.</em><br>Built on Trust.</h2>
@@ -761,26 +457,10 @@
       <p>We set out to change that. No pawn shops. No shady dealers. No undervalued offers. Just <strong>transparent pricing, instant cash, and complete dignity</strong> for every customer who walks through our door.</p>
       <p>Incorporated in India, we are <strong>RBI compliant</strong> and operate with full regulatory transparency. Whether you're a homemaker in Mumbai or a small business owner in Nagpur — your gold deserves the best rate. Full stop.</p>
       <div class="about-values">
-        <div class="value-card">
-          <div class="v-icon">🏛️</div>
-          <h5>RBI Compliant</h5>
-          <p>Fully regulated. Every transaction documented and above board.</p>
-        </div>
-        <div class="value-card">
-          <div class="v-icon">⚡</div>
-          <h5>Instant Payout</h5>
-          <p>Cash or bank transfer within minutes of agreement.</p>
-        </div>
-        <div class="value-card">
-          <div class="v-icon">🔍</div>
-          <h5>100% Transparent</h5>
-          <p>Testing done in front of you. No hidden charges. Ever.</p>
-        </div>
-        <div class="value-card">
-          <div class="v-icon">💎</div>
-          <h5>Best Rates</h5>
-          <p>Tightest spread. Live MCX rates. You get maximum value.</p>
-        </div>
+        <div class="value-card"><div class="v-icon">🏛️</div><h5>RBI Compliant</h5><p>Fully regulated. Every transaction documented and above board.</p></div>
+        <div class="value-card"><div class="v-icon">⚡</div><h5>Instant Payout</h5><p>Cash or bank transfer within minutes of agreement.</p></div>
+        <div class="value-card"><div class="v-icon">🔍</div><h5>100% Transparent</h5><p>Testing done in front of you. No hidden charges. Ever.</p></div>
+        <div class="value-card"><div class="v-icon">💎</div><h5>Best Rates</h5><p>Tightest spread. Live MCX rates. You get maximum value.</p></div>
       </div>
     </div>
     <div class="about-visual">
@@ -790,58 +470,27 @@
       <div class="founders">
         <div class="founder">
           <div class="founder-avatar">AB</div>
-          <div class="founder-info">
-            <h6>Aryan Bafna</h6>
-            <span>Co-Founder & CEO</span>
-          </div>
+          <div class="founder-info"><h6>Aryan Bafna</h6><span>Co-Founder & CEO</span></div>
         </div>
         <div class="founder">
-          <div class="founder-avatar">PB</div>
-          <div class="founder-info">
-            <h6>Rajkumar Bafna</h6>
-            <span>Co-Founder & COO</span>
-          </div>
+          <div class="founder-avatar">RB</div>
+          <div class="founder-info"><h6>Rajkumar Bafna</h6><span>Co-Founder & COO</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
 <section id="trust">
   <div class="section-label">Why KaratKash</div>
   <h2>Ek nahin, <em>chhe reasons</em><br>to trust us.</h2>
   <div class="trust-grid">
-    <div class="trust-card">
-      <div class="t-icon">🏅</div>
-      <h4>BIS Certified Testing</h4>
-      <p>Every gram tested using XRF technology certified by Bureau of Indian Standards. No guesswork, no estimates — just accurate, certified purity measurement.</p>
-    </div>
-    <div class="trust-card">
-      <div class="t-icon">📊</div>
-      <h4>Live MCX Rate Pricing</h4>
-      <p>Your gold is priced against live MCX and IBJA rates — updated every 15 minutes. You always get the market rate, not a discounted arbitrary number.</p>
-    </div>
-    <div class="trust-card">
-      <div class="t-icon">⚡</div>
-      <h4>Instant Bank Transfer</h4>
-      <p>IMPS transfer to your bank account in under 5 minutes of deal closure. Or take cash. No delays, no "processing time", no excuses.</p>
-    </div>
-    <div class="trust-card">
-      <div class="t-icon">👁️</div>
-      <h4>Full Transparency</h4>
-      <p>Every step — weighing, purity testing, rate calculation — happens in front of you. We hand you a detailed receipt for every transaction. Always.</p>
-    </div>
-    <div class="trust-card">
-      <div class="t-icon">🔒</div>
-      <h4>Safe & Secure</h4>
-      <p>CCTV-monitored premises, insured vault, and trained staff. Your gold is in the safest hands from the moment you walk in to the moment we settle.</p>
-    </div>
-    <div class="trust-card">
-      <div class="t-icon">🤝</div>
-      <h4>No Pressure. Ever.</h4>
-      <p>Don't like the quote? Walk away. No questions asked. We want you to leave happy — whether you sell or not. Your trust matters more than a transaction.</p>
-    </div>
+    <div class="trust-card"><div class="t-icon">🏅</div><h4>BIS Certified Testing</h4><p>Every gram tested using XRF technology certified by Bureau of Indian Standards. No guesswork — just accurate, certified purity measurement.</p></div>
+    <div class="trust-card"><div class="t-icon">📊</div><h4>Live MCX Rate Pricing</h4><p>Your gold is priced against live MCX and IBJA rates updated daily. You always get the market rate, not a discounted arbitrary number.</p></div>
+    <div class="trust-card"><div class="t-icon">⚡</div><h4>Instant Bank Transfer</h4><p>IMPS transfer to your bank account in under 5 minutes of deal closure. Or take cash. No delays, no excuses.</p></div>
+    <div class="trust-card"><div class="t-icon">👁️</div><h4>Full Transparency</h4><p>Every step — weighing, purity testing, rate calculation — happens in front of you. We hand you a detailed receipt for every transaction.</p></div>
+    <div class="trust-card"><div class="t-icon">🔒</div><h4>Safe & Secure</h4><p>CCTV-monitored premises, insured vault, and trained staff. Your gold is in the safest hands from the moment you walk in.</p></div>
+    <div class="trust-card"><div class="t-icon">🤝</div><h4>No Pressure. Ever.</h4><p>Don't like the quote? Walk away. No questions asked. Your trust matters more than a transaction.</p></div>
   </div>
   <div class="trust-badge-row">
     <div class="badge"><span class="b-icon">✓</span> RBI Registered</div>
@@ -853,114 +502,39 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
 <section id="reviews">
   <div class="section-label">Customer Stories</div>
   <h2>Unhone becha, <em>humne jeeta.</em></h2>
   <div class="reviews-grid">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"Meri beti ki shadi ke liye paise chahiye the. KaratKash ne 20 minutes mein mera sona kharida aur turant account mein paisa dala. Bahut izzat se kaam kiya unhone."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">SR</div>
-        <div>
-          <div class="reviewer-name">Sunita Rathore</div>
-          <div class="reviewer-detail">Homemaker, Pune • 2 months ago</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"I compared 4 gold buyers in my area. KaratKash gave me ₹8,400 more per 10 grams than anyone else. The process was completely transparent — they tested right in front of me."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">AJ</div>
-        <div>
-          <div class="reviewer-name">Arjun Joshi</div>
-          <div class="reviewer-detail">Small Business Owner, Mumbai • 1 month ago</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"As a woman going alone to sell gold, I was nervous. The staff was professional, respectful and made me feel completely safe. Got the best rate and cash the same day. Will recommend to everyone."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">NM</div>
-        <div>
-          <div class="reviewer-name">Neha Malhotra</div>
-          <div class="reviewer-detail">Teacher, Delhi • 3 weeks ago</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★☆</div>
-      <p class="review-text">"Emergency tha, ATM se paisa nahi nikla. KaratKash ke paas gayi, 15 minute mein ₹45,000 haath mein the. Zindagi mein pehli baar sone ki itni value mili."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">KP</div>
-        <div>
-          <div class="reviewer-name">Kavita Patil</div>
-          <div class="reviewer-detail">Homemaker, Nagpur • 5 weeks ago</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"The XRF testing machine was a game changer. I could see the exact purity percentage on screen myself. No trust issues whatsoever. This is how gold buying should be done in India."</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">VK</div>
-        <div>
-          <div class="reviewer-name">Vikram Khanna</div>
-          <div class="reviewer-detail">IT Professional, Bangalore • 2 weeks ago</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"Mere paas purana toota hua zewar tha jo sirf almaari mein pada tha. KaratKash ne uski bhi poori value di. Mujhe nahi pata tha ki tuta hua sona bhi itna kaam aata hai!"</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">RM</div>
-        <div>
-          <div class="reviewer-name">Rekha Mehta</div>
-          <div class="reviewer-detail">Retired, Ahmedabad • 1 week ago</div>
-        </div>
-      </div>
-    </div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Meri beti ki shadi ke liye paise chahiye the. KaratKash ne 20 minutes mein mera sona kharida aur turant account mein paisa dala. Bahut izzat se kaam kiya unhone."</p><div class="reviewer"><div class="reviewer-avatar">SR</div><div><div class="reviewer-name">Sunita Rathore</div><div class="reviewer-detail">Homemaker, Pune • 2 months ago</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"I compared 4 gold buyers in my area. KaratKash gave me ₹8,400 more per 10 grams than anyone else. The process was completely transparent — they tested right in front of me."</p><div class="reviewer"><div class="reviewer-avatar">AJ</div><div><div class="reviewer-name">Arjun Joshi</div><div class="reviewer-detail">Small Business Owner, Mumbai • 1 month ago</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"As a woman going alone to sell gold, I was nervous. The staff was professional, respectful and made me feel completely safe. Got the best rate and cash the same day."</p><div class="reviewer"><div class="reviewer-avatar">NM</div><div><div class="reviewer-name">Neha Malhotra</div><div class="reviewer-detail">Teacher, Delhi • 3 weeks ago</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★☆</div><p class="review-text">"Emergency tha, ATM se paisa nahi nikla. KaratKash ke paas gayi, 15 minute mein ₹45,000 haath mein the. Zindagi mein pehli baar sone ki itni value mili."</p><div class="reviewer"><div class="reviewer-avatar">KP</div><div><div class="reviewer-name">Kavita Patil</div><div class="reviewer-detail">Homemaker, Nagpur • 5 weeks ago</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"The XRF testing machine was a game changer. I could see the exact purity percentage on screen myself. No trust issues whatsoever. This is how gold buying should be done in India."</p><div class="reviewer"><div class="reviewer-avatar">VK</div><div><div class="reviewer-name">Vikram Khanna</div><div class="reviewer-detail">IT Professional, Bangalore • 2 weeks ago</div></div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">"Mere paas purana toota hua zewar tha jo sirf almaari mein pada tha. KaratKash ne uski bhi poori value di. Mujhe nahi pata tha ki tuta hua sona bhi itna kaam aata hai!"</p><div class="reviewer"><div class="reviewer-avatar">RM</div><div><div class="reviewer-name">Rekha Mehta</div><div class="reviewer-detail">Retired, Ahmedabad • 1 week ago</div></div></div></div>
   </div>
   <div class="review-summary">
-    <div class="summary-item">
-      <div class="summary-num">4.8/5</div>
-      <div class="summary-label">Overall Rating</div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-num">50,000+</div>
-      <div class="summary-label">Transactions Done</div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-num">98%</div>
-      <div class="summary-label">Would Recommend</div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-num">&lt; 20 min</div>
-      <div class="summary-label">Avg. Process Time</div>
-    </div>
+    <div class="summary-item"><div class="summary-num">4.8/5</div><div class="summary-label">Overall Rating</div></div>
+    <div class="summary-item"><div class="summary-num">50,000+</div><div class="summary-label">Transactions Done</div></div>
+    <div class="summary-item"><div class="summary-num">98%</div><div class="summary-label">Would Recommend</div></div>
+    <div class="summary-item"><div class="summary-num">&lt;20 min</div><div class="summary-label">Avg. Process Time</div></div>
   </div>
 </section>
 
-<!-- CTA -->
 <section id="cta">
   <div class="section-label">Ready?</div>
   <h2>Rakha tha zamaane ke liye —<br><em>zamaana aa gaya.</em></h2>
   <p>Your gold has been waiting long enough. Get the best rate, today.</p>
   <div class="cta-actions">
-    <a href="tel:+918800000000" class="btn-primary">📞 Call Now — Free Consultation</a>
+    <a href="tel:+919987599943" class="btn-primary">📞 Call Now — Free Consultation</a>
     <a href="#calculator" class="btn-outline">Calculate Value First</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="logo">Karat<span>Kash</span></div>
+      <img src="logo.png" alt="KaratKash" class="footer-logo">
       <p>India's most trusted instant gold buyer. Incorporated in India. RBI compliant. Serving customers across Maharashtra, Delhi NCR, Karnataka and Gujarat.</p>
     </div>
     <div>
@@ -988,7 +562,7 @@
       <ul>
         <li><a href="tel:+919987599943">📞 +91 99875 99943</a></li>
         <li><a href="https://wa.me/919987599943">💬 WhatsApp Us</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#bfd7dad3d3d0ffd4decddecbd4deccd791d6d1">✉ <span class="__cf_email__" data-cfemail="3159545d5d5e715a504350455a5042591f585f">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:hello@karatkash.in">✉ hello@karatkash.in</a></li>
         <li><a href="#">📍 Find Nearest Branch</a></li>
       </ul>
     </div>
@@ -999,103 +573,70 @@
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
 <a href="https://wa.me/919987599943" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  document.addEventListener('DOMContentLoaded', function() {
+<script>
+window.addEventListener('load', function() {
+  // ── UPDATE THIS NUMBER DAILY ──
+  var MCX_RATE_10G = 162098;  // Today's MCX gold rate per 10 grams
+  var SPREAD = 500;
+  var BASE = (MCX_RATE_10G - SPREAD) / 10;
 
-  // ── GOLD RATE LOGIC ──
-  // MCX 24K rate per 10g in INR — update this number daily
-  const MCX_RATE_10G = 16208; // Today's MCX rate per 10 grams
-  const KARATKASH_SPREAD = 500; // Our spread deducted per 10g
-  const MCX_PER_GRAM = MCX_RATE_10G / 10;
-  const BASE_RATE_24K = MCX_PER_GRAM - (KARATKASH_SPREAD / 10);
+  var PURITY = { 24:0.999, 22:0.916, 18:0.75, 14:0.585 };
+  var TYPE_FACTOR = { jewelry:0.95, coin:0.98, scrap:0.90 };
+  var TYPE_LABEL = { jewelry:'Jewellery (5% making deduction)', coin:'Coin/Bar (2% handling)', scrap:'Scrap (10% processing)' };
 
-  const PURITY = { 24: 0.999, 22: 0.916, 18: 0.75, 14: 0.585 };
-  const TYPE_FACTOR = { jewelry: 0.95, coin: 0.98, scrap: 0.90 };
-  const TYPE_LABEL = { jewelry: 'Jewellery (5% making deduction)', coin: 'Coin/Bar (2% handling)', scrap: 'Scrap (10% processing)' };
+  function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
 
-  function formatINR(n) {
-    return '₹' + Math.round(n).toLocaleString('en-IN');
-  }
+  // Ticker
+  document.getElementById('tick24').textContent = fmt(BASE * PURITY[24]);
+  document.getElementById('tick22').textContent = fmt(BASE * PURITY[22]);
+  document.getElementById('tick18').textContent = fmt(BASE * PURITY[18]);
 
-  function updateTicker() {
-    const r24 = BASE_RATE_24K * PURITY[24];
-    const r22 = BASE_RATE_24K * PURITY[22];
-    const r18 = BASE_RATE_24K * PURITY[18];
-    if(document.getElementById('tick24')) document.getElementById('tick24').textContent = formatINR(r24);
-    if(document.getElementById('tick22')) document.getElementById('tick22').textContent = formatINR(r22);
-    if(document.getElementById('tick18')) document.getElementById('tick18').textContent = formatINR(r18);
-  }
-
-  function calculate() {
-    const karat = parseInt(document.getElementById('karat').value);
-    const weight = parseFloat(document.getElementById('weight').value) || 0;
-    const gtype = document.getElementById('goldtype').value;
-    const purity = PURITY[karat];
-    const typeFactor = TYPE_FACTOR[gtype];
-    const rateForKarat = BASE_RATE_24K * purity;
-    const gross = rateForKarat * weight;
-    const deduction = gross * (1 - typeFactor);
-    const net = gross * typeFactor;
-    document.getElementById('resultAmount').textContent = formatINR(net);
-    const bd = document.getElementById('breakdown');
-    bd.innerHTML = `
-      <div class="breakdown-row"><span>Weight</span><span>${weight}g</span></div>
-      <div class="breakdown-row"><span>Purity (${karat}K)</span><span>${(purity*100).toFixed(1)}%</span></div>
-      <div class="breakdown-row"><span>Rate per gram</span><span>${formatINR(rateForKarat)}</span></div>
-      <div class="breakdown-row"><span>Gross Value</span><span>${formatINR(gross)}</span></div>
-      <div class="breakdown-row"><span>${TYPE_LABEL[gtype]}</span><span>- ${formatINR(deduction)}</span></div>
-      <div class="breakdown-row total"><span>You Receive ~</span><span>${formatINR(net)}</span></div>
-    `;
-  }
-
-  function buildRateTable() {
-    const tbody = document.getElementById('rateTable');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-    const karats = [
-      { k: 24, hall: 'BIS 999', p: 0.999 },
-      { k: 22, hall: 'BIS 916', p: 0.916 },
-      { k: 18, hall: 'BIS 750', p: 0.75 },
-      { k: 14, hall: 'BIS 585', p: 0.585 },
-    ];
-    karats.forEach(r => {
-      const rate = BASE_RATE_24K * r.p;
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${r.hall}</td><td>${r.k}K</td><td>${(r.p*100).toFixed(1)}%</td><td>${formatINR(rate)}</td>`;
-      tbody.appendChild(row);
-    });
-  }
-
-  function scrollToContact() {
-    document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  document.getElementById('karat').addEventListener('change', calculate);
-  document.getElementById('weight').addEventListener('input', calculate);
-  document.getElementById('goldtype').addEventListener('change', calculate);
-
-  buildRateTable();
-  calculate();
-  updateTicker();
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.trust-card, .review-card, .process-step, .value-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+  // Rate table
+  var tbody = document.getElementById('rateTable');
+  [{k:24,h:'BIS 999',p:0.999},{k:22,h:'BIS 916',p:0.916},{k:18,h:'BIS 750',p:0.75},{k:14,h:'BIS 585',p:0.585}].forEach(function(r) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+r.h+'</td><td>'+r.k+'K</td><td>'+(r.p*100).toFixed(1)+'%</td><td>'+fmt(BASE*r.p)+'</td>';
+    tbody.appendChild(tr);
   });
 
-  }); // end DOMContentLoaded
+  // Calculator
+  function calc() {
+    var k = parseInt(document.getElementById('karat').value);
+    var w = parseFloat(document.getElementById('weight').value) || 0;
+    var g = document.getElementById('goldtype').value;
+    var rate = BASE * PURITY[k];
+    var gross = rate * w;
+    var net = gross * TYPE_FACTOR[g];
+    var ded = gross - net;
+    document.getElementById('resultAmount').textContent = fmt(net);
+    document.getElementById('breakdown').innerHTML =
+      '<div class="breakdown-row"><span>Weight</span><span>'+w+'g</span></div>'+
+      '<div class="breakdown-row"><span>Purity ('+k+'K)</span><span>'+(PURITY[k]*100).toFixed(1)+'%</span></div>'+
+      '<div class="breakdown-row"><span>Rate per gram</span><span>'+fmt(rate)+'</span></div>'+
+      '<div class="breakdown-row"><span>Gross Value</span><span>'+fmt(gross)+'</span></div>'+
+      '<div class="breakdown-row"><span>'+TYPE_LABEL[g]+'</span><span>- '+fmt(ded)+'</span></div>'+
+      '<div class="breakdown-row total"><span>You Receive ~</span><span>'+fmt(net)+'</span></div>';
+  }
+
+  document.getElementById('karat').addEventListener('change', calc);
+  document.getElementById('weight').addEventListener('input', calc);
+  document.getElementById('goldtype').addEventListener('change', calc);
+  calc();
+
+  // Scroll animations
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    });
+  }, {threshold:0.1});
+  document.querySelectorAll('.trust-card,.review-card,.process-step,.value-card').forEach(function(el) {
+    el.style.opacity='0'; el.style.transform='translateY(20px)';
+    el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    obs.observe(el);
+  });
+});
 </script>
+</body>
+</html>
