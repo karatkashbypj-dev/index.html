@@ -654,7 +654,7 @@ window.addEventListener('load', function() {
   var r=document.getElementById('resultAmount').textContent;
   fetch('https://script.google.com/macros/s/AKfycbxlyjzoHJy2Pjcnac6O-X3gwaOzGF2K7jdmNLkZKVT1oc5lmnlD3oaAhKe5BPg-mmHI/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,phone:p,karat:k+'K',weight:w+'g',goldtype:g,estimate:r})});
   var msg='Hi KaratKash! I want a quote.%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0APurity: '+k+'K%0AWeight: '+w+'g%0AEstimate: '+encodeURIComponent(r);
-  window.open('https://wa.me/919987599943?text='+msg,'_blank');
+  document.getElementById('cta').scrollIntoView({behavior:'smooth'});
 }
 </script>
 </body>
