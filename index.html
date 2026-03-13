@@ -287,6 +287,52 @@
     .about-values { grid-template-columns:1fr; }
     .footer-grid { grid-template-columns:1fr; }
   }
+  .hamburger {
+  display:none;
+  background:none;
+  border:none;
+  color:#C9A84C;
+  font-size:1.8rem;
+  cursor:pointer;
+  z-index:1001;
+}
+.mobile-menu {
+  display:none;
+  flex-direction:column;
+  position:fixed;
+  top:0; right:0;
+  width:70%;
+  height:100vh;
+  background:#0A0A0A;
+  border-left:1px solid rgba(201,168,76,0.2);
+  padding:5rem 2rem 2rem;
+  z-index:1000;
+  gap:1.5rem;
+}
+.mobile-menu a {
+  color:#FDFAF4;
+  text-decoration:none;
+  font-size:1.1rem;
+  letter-spacing:0.1em;
+  padding:0.75rem 0;
+  border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.mobile-sell-btn {
+  background:#C9A84C !important;
+  color:#0A0A0A !important;
+  padding:0.75rem 1.5rem !important;
+  text-align:center;
+  border-radius:2px;
+  font-weight:700;
+  margin-top:1rem;
+  border:none !important;
+}
+.mobile-menu.open { display:flex; }
+@media(max-width:768px) {
+  .hamburger { display:block; }
+  .nav-links { display:none; }
+  .nav-cta { display:none; }
+}
 </style>
 </head>
 <body>
@@ -303,6 +349,15 @@
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#cta" class="nav-cta">Sell Gold</a></li>
   </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#calculator" onclick="toggleMenu()">ESTIMATE</a>
+  <a href="#process" onclick="toggleMenu()">PROCESS</a>
+  <a href="#about" onclick="toggleMenu()">ABOUT</a>
+  <a href="#why-us" onclick="toggleMenu()">WHY US</a>
+  <a href="#reviews" onclick="toggleMenu()">REVIEWS</a>
+  <a href="#cta" onclick="toggleMenu()" class="mobile-sell-btn">SELL GOLD</a>
+</div>
 </nav>
 
 <div class="gold-rate-bar">
@@ -655,6 +710,9 @@ window.addEventListener('load', function() {
   fetch('https://script.google.com/macros/s/AKfycbxlyjzoHJy2Pjcnac6O-X3gwaOzGF2K7jdmNLkZKVT1oc5lmnlD3oaAhKe5BPg-mmHI/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,phone:p,karat:k+'K',weight:w+'g',goldtype:g,estimate:r})});
   var msg='Hi KaratKash! I want a quote.%0AName: '+encodeURIComponent(n)+'%0APhone: '+encodeURIComponent(p)+'%0APurity: '+k+'K%0AWeight: '+w+'g%0AEstimate: '+encodeURIComponent(r);
   document.getElementById('cta').scrollIntoView({behavior:'smooth'});
+}
+  function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
 }
 </script>
 </body>
